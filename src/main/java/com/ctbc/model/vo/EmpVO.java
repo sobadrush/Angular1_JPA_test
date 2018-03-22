@@ -1,6 +1,7 @@
 package com.ctbc.model.vo;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,6 +29,20 @@ public class EmpVO implements Serializable {
 
 	@Column(name = "hiredate", nullable = false)
 	private java.sql.Date empHiredate;
+
+	@Column(name = "deptno", nullable = false)
+	private Integer deptno;
+	
+	public EmpVO() {
+		super();
+	}
+
+	public EmpVO(String empName, String empJob, Date empHiredate, int deptno) {
+		this.empName = empName;
+		this.empJob = empJob;
+		this.empHiredate = empHiredate;
+		this.deptno = deptno;
+	}
 
 	public Integer getEmpNo() {
 		return empNo;
@@ -61,9 +76,17 @@ public class EmpVO implements Serializable {
 		this.empHiredate = empHiredate;
 	}
 
+	public Integer getDeptno() {
+		return deptno;
+	}
+
+	public void setDeptno(Integer deptno) {
+		this.deptno = deptno;
+	}
+
 	@Override
 	public String toString() {
-		return "EmpVO [empNo=" + empNo + ", empName=" + empName + ", empJob=" + empJob + ", empHiredate=" + empHiredate + "]";
+		return "EmpVO [empNo=" + empNo + ", empName=" + empName + ", empJob=" + empJob + ", empHiredate=" + empHiredate + ", deptno=" + deptno + "]";
 	}
 
 }

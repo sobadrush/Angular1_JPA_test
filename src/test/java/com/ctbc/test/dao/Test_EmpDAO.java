@@ -36,6 +36,30 @@ public class Test_EmpDAO {
 //	@Ignore
 	public void test_002() throws SQLException {
 		System.out.println("================== 【START test_002】 ====================");
+		EmpVO empVO = new EmpVO("淑Z","氣象主播", new java.sql.Date(System.currentTimeMillis()) , 10);
+		System.out.println(empDao.addEmp(empVO));
+	}
+	
+	@Test
+//	@Ignore
+	public void test_003() throws SQLException {
+		System.out.println("================== 【START test_003】 ====================");
+		System.out.println(empDao.deleteEmpById(7001));
+	}
+	
+	@Test
+//	@Ignore
+	public void test_004() throws SQLException {
+		System.out.println("================== 【START test_004】 ====================");
+		EmpVO empVO = new EmpVO("殭屍王將臣","BOSS", new java.sql.Date(System.currentTimeMillis()) , 20);
+		empVO.setEmpNo(7002);
+		System.out.println(empDao.updateEmp(empVO));
+	}
+	
+	@Test
+//	@Ignore
+	public void test_005() throws SQLException {
+		System.out.println("================== 【START test_005】 ====================");
 		List<EmpVO> eList = empDao.getAllEmp();
 		for (EmpVO empVO : eList) {
 			System.out.println(empVO);
