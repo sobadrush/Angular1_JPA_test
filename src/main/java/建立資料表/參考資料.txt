@@ -1,0 +1,9 @@
+https://blog.csdn.net/chengly0129/article/details/49531207
+
+http://mistech.pixnet.net/blog/post/443039522-spring-data-jpa-%E5%9F%BA%E6%9C%AC%E7%AF%87
+
+http://stevenitlife.blogspot.tw/2016/03/hibernate-spring-jpa-configure.html
+
+https://jax-work-archive.blogspot.tw/2009/07/eclipse-34-35-mysql.html
+
+http://www.java2s.com/Code/Java/JPA/FindAllObjects.htm

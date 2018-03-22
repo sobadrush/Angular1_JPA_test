@@ -12,6 +12,6 @@
 		<property name="persistenceUnitName" value="myPersistenceUnit"/>
 	</bean>
 	
-<!-- 	<context:component-scan base-package=""/> -->
+	<context:component-scan base-package="com.ctbc.model.dao"/>
 	
 </beans>

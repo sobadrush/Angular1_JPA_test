@@ -7,6 +7,7 @@
 	
 	<persistence-unit name="myPersistenceUnit" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider><!-- 設定JPA實作為Hibernate -->
+		<!-- <class>com.ctbc.model.vo.EmpVO</class> --><!-- 對應表格VO -->
 		<properties>
 			<property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 			<property name="hibernate.connection.url" value="jdbc:sqlserver://127.0.0.1;databaseName=DB_Emp_Dept;" />
