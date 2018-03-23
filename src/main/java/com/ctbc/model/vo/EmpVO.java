@@ -14,8 +14,8 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 @Entity(name = "EmpVO")
-//@Table(name = "emp_TB15")
-@Table(name = "z40180_empTB") // For ITOA
+//@Table(name = "z40180_empTB") // For ITOA
+@Table(name = "emp_TB15")// For ITOA
 public class EmpVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;

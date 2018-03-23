@@ -18,7 +18,7 @@
 		
 		<!--【Spring自動Reset表】 -->
 		<jdbc:initialize-database data-source="ds" enabled="true">
-		    <jdbc:script location="classpath:my_init_sql_script_CTBC.sql" />
+		    <jdbc:script location="classpath:my_init_sql_script_HOME.sql" />
 		</jdbc:initialize-database>
 	</beans>
 

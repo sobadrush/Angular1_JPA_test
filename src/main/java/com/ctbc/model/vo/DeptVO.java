@@ -12,12 +12,9 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-/**
- * Entity implementation class for Entity: DeptVO
- *
- */
 @Entity(name = "DeptVO")
-@Table(name = "z40180_deptTB")
+//@Table(name = "z40180_deptTB")// for ITOA
+@Table(name = "dept_TB15") // HOME
 public class DeptVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -18,7 +18,8 @@ import com.ctbc.model.vo.DeptVO;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring-beans.xml" })
 @FixMethodOrder(value = MethodSorters.NAME_ASCENDING)
-@ActiveProfiles(value = "CTBC")
+//@ActiveProfiles(value = "CTBC")
+@ActiveProfiles(value = "HOME")
 public class Test_DeptDAO {
 
 	@Autowired
