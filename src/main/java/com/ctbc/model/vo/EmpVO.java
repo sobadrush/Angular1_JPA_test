@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 @Entity(name = "EmpVO")
 //@Table(name = "emp_TB15")
 @Table(name = "z40180_empTB") // For ITOA
@@ -33,7 +36,7 @@ public class EmpVO implements Serializable {
 
 	@Column(name = "deptno", nullable = false)
 	private Integer deptno;
-	
+
 	public EmpVO() {
 		super();
 	}
@@ -87,7 +90,9 @@ public class EmpVO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "EmpVO [empNo=" + empNo + ", empName=" + empName + ", empJob=" + empJob + ", empHiredate=" + empHiredate + ", deptno=" + deptno + "]";
+		boolean outputTransients = false;
+		boolean outputStatics = false;
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE, outputTransients, outputStatics);
 	}
 
 }

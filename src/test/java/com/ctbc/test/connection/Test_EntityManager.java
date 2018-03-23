@@ -31,7 +31,7 @@ public class Test_EntityManager {
 	private EntityManager em;
 
 	@Test
-//	@Ignore
+	@Ignore
 	public void test_001() throws SQLException {
 		// 測試連線是否成功
 		org.hibernate.engine.spi.SessionImplementor sessionImp = (org.hibernate.engine.spi.SessionImplementor) em.getDelegate();
@@ -42,7 +42,7 @@ public class Test_EntityManager {
 	}
 
 	@Test
-	@Ignore
+//	@Ignore
 	public void test_002() throws SQLException {
 		EmpVO vo = em.find(EmpVO.class, 7001);
 		System.out.println(" >>> " + vo);

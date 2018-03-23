@@ -3,7 +3,6 @@ package com.ctbc.test.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,58 +12,51 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ctbc.model.dao.EmpDAO;
-import com.ctbc.model.vo.EmpVO;
+import com.ctbc.model.dao.DeptDAO;
+import com.ctbc.model.vo.DeptVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring-beans.xml" })
 @FixMethodOrder(value = MethodSorters.NAME_ASCENDING)
 @ActiveProfiles(value = "CTBC")
-public class Test_EmpDAO {
+public class Test_DeptDAO {
 
 	@Autowired
-	private EmpDAO empDao;
+	private DeptDAO deptDao;
 	
 	@Test
 //	@Ignore
 	public void test_001() throws SQLException {
 		System.out.println("================== 【START test_001】 ====================");
-		EmpVO empVO = empDao.getEmpById(7001);
-		System.out.println(empVO);
-		Assert.assertNotNull("查無empVO資料", empVO);
 	}
 
 	@Test
 //	@Ignore
 	public void test_002() throws SQLException {
 		System.out.println("================== 【START test_002】 ====================");
-		EmpVO empVO = new EmpVO("淑Z","氣象主播", new java.sql.Date(System.currentTimeMillis()) , 10);
-		System.out.println(empDao.addEmp(empVO));
 	}
 	
 	@Test
 //	@Ignore
 	public void test_003() throws SQLException {
 		System.out.println("================== 【START test_003】 ====================");
-		System.out.println(empDao.deleteEmpById(7001));
 	}
 	
 	@Test
 //	@Ignore
 	public void test_004() throws SQLException {
 		System.out.println("================== 【START test_004】 ====================");
-		EmpVO empVO = new EmpVO("殭屍王將臣","BOSS", new java.sql.Date(System.currentTimeMillis()) , 20);
-		empVO.setEmpNo(7002);
-		System.out.println(empDao.updateEmp(empVO));
+		DeptVO DeptVO = deptDao.getDeptById(20);
+		System.out.println(" >>> " + DeptVO);
 	}
 	
 	@Test
 //	@Ignore
 	public void test_005() throws SQLException {
 		System.out.println("================== 【START test_005】 ====================");
-		List<EmpVO> eList = empDao.getAllEmp();
-		for (EmpVO empVO : eList) {
-			System.out.println(empVO);
+		List<DeptVO> dList = deptDao.getAllDept();
+		for (DeptVO deptVO : dList) {
+			System.out.println(deptVO);
 		}
 	}
 
