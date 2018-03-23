@@ -8,10 +8,16 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+	<!-- xml 中設定 profile -->
+	<!-- 这个配置一定要单独放一个spring文件，然后在applicationContext.xml(或者其他的主入口文件)里import进来，如果你混淆做，就会报错:
+		发现了以元素 'bean' 开头的无效内容。应以 '{"http://www.springframework.org/schema/beans:beans} -->
+	<!-- https://www.hellojava.com/article/162 -->
+	<import resource="classpath:spring-datasource.xml"/>
 
-	<bean id="PersistenceAnnotationBeanPostProcessor" class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+	<bean id="persistenceAnnotationBeanPostProcessor" class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 	
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" scope="singleton">
+		<property name="dataSource" ref="ds"></property>
 		<property name="persistenceUnitName" value="myPersistenceUnit"/>
 	</bean>
 	

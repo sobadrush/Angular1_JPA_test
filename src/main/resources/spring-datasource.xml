@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<beans profile="HOME">  
+		<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource" scope="singleton">
+			<constructor-arg name="url" value="jdbc:sqlserver://127.0.0.1:1433;databaseName=DB_Emp_Dept;"/>
+			<constructor-arg name="username" value="sa"/>
+			<constructor-arg name="password" value="sa123456"/>
+			<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+		</bean>
+	</beans>
+
+	<beans profile="CTBC">  
+		<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource" scope="singleton">
+			<constructor-arg name="url" value="jdbc:sqlserver://172.24.17.52:1803;databaseName=ITOA_MAIN"/>
+			<constructor-arg name="username" value="ITOA_MAIN_mod"/>
+			<constructor-arg name="password" value="f3ru9cj4"/>
+			<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+		</bean>
+	</beans>
+	
+</beans>

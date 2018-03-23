@@ -11,7 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity(name = "EmpVO")
-@Table(name = "emp_TB15")
+//@Table(name = "emp_TB15")
+@Table(name = "z40180_empTB") // For ITOA
 public class EmpVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
