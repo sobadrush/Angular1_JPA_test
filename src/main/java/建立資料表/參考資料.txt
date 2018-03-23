@@ -14,3 +14,6 @@ https://www.objectdb.com/java/jpa/query/jpql/update
 
 // Spring 交易
 http://arganzheng.life/spring-transaction.html 
+
+【Spring自動Reset表】http://www.javarticles.com/2015/01/example-of-spring-datasourceinitializer.html
+【Spring自動Reset表】 https://stackoverflow.com/questions/13357109/running-jdbcinitialize-database-at-the-beginning-of-context-creation

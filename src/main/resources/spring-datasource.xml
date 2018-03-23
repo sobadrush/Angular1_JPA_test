@@ -3,7 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<beans profile="HOME">  
@@ -13,6 +15,11 @@
 			<constructor-arg name="password" value="sa123456"/>
 			<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
 		</bean>
+		
+		<!--【Spring自動Reset表】 -->
+		<jdbc:initialize-database data-source="ds" enabled="true">
+		    <jdbc:script location="classpath:my_init_sql_script_CTBC.sql" />
+		</jdbc:initialize-database>
 	</beans>
 
 	<beans profile="CTBC">  
@@ -22,6 +29,11 @@
 			<constructor-arg name="password" value="f3ru9cj4"/>
 			<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
 		</bean>
+		
+		<!--【Spring自動Reset表】 -->
+		<jdbc:initialize-database data-source="ds" enabled="true">
+		    <jdbc:script location="classpath:my_init_sql_script_CTBC.sql" />
+		</jdbc:initialize-database>
 	</beans>
 	
 </beans>

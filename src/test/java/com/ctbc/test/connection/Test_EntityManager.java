@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import org.hibernate.engine.jdbc.connections.spi.JdbcConnectionAccess;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -23,7 +24,7 @@ import com.ctbc.model.vo.EmpVO;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring-beans.xml" })
 @FixMethodOrder(value = MethodSorters.NAME_ASCENDING)
-@ActiveProfiles(value = "HOME")
+@ActiveProfiles(value = "CTBC")
 public class Test_EntityManager {
 
 	@PersistenceContext(unitName = "myPersistenceUnit")
@@ -41,7 +42,7 @@ public class Test_EntityManager {
 	}
 
 	@Test
-//	@Ignore
+	@Ignore
 	public void test_002() throws SQLException {
 		EmpVO vo = em.find(EmpVO.class, 7001);
 		System.out.println(" >>> " + vo);

@@ -1,7 +1,7 @@
 USE DB_Emp_Dept;
 
--- DROP TABLE emp_TB15;
--- DROP TABLE dept_TB15;
+DROP TABLE emp_TB15;
+DROP TABLE dept_TB15;
 
 CREATE TABLE dept_TB15
 (

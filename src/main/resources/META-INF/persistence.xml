@@ -19,8 +19,8 @@
 			 <property name="hibernate.format_sql" value="true" />
 			 <property name="hibernate.use_sql_comments" value="false" /><!-- 使 sql [可讀性 + 可定位性] 更好 -->
 			
-		<!-- <property name="hibernate.hbm2ddl.auto" value="create"/> -->
-		<!-- <property name="hibernate.hbm2ddl.import_files" value="my_init_sql_script.sql"/> -->
+<!-- 	     <property name="hibernate.hbm2ddl.auto" value="create"/> -->
+<!-- 		 <property name="hibernate.hbm2ddl.import_files" value="my_init_sql_script.sql"/> -->
 		</properties>
 	</persistence-unit>
 
