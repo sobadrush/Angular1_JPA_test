@@ -33,6 +33,19 @@ public class DeptVO implements Serializable {
 	public DeptVO() {
 		super();
 	}
+	
+	public DeptVO(Integer deptNo, String deptName, String deptLoc) {
+		super();
+		this.deptNo = deptNo;
+		this.deptName = deptName;
+		this.deptLoc = deptLoc;
+	}
+
+	public DeptVO(String deptName, String deptLoc) {
+		super();
+		this.deptName = deptName;
+		this.deptLoc = deptLoc;
+	}
 
 	public Integer getDeptNo() {
 		return this.deptNo;

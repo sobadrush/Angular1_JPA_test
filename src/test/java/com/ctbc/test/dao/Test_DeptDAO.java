@@ -24,7 +24,7 @@ public class Test_DeptDAO {
 
 	@Autowired
 	private DeptDAO deptDao;
-	
+
 	@Test
 //	@Ignore
 	public void test_001() throws SQLException {
@@ -35,14 +35,18 @@ public class Test_DeptDAO {
 //	@Ignore
 	public void test_002() throws SQLException {
 		System.out.println("================== 【START test_002】 ====================");
+		DeptVO deptVO = new DeptVO(10, "國防部", "中正區");
+		deptDao.updateDept(deptVO);
 	}
-	
+
 	@Test
 //	@Ignore
 	public void test_003() throws SQLException {
 		System.out.println("================== 【START test_003】 ====================");
+		DeptVO deptVO = new DeptVO("個金部", "台北南港");
+		deptDao.addDept(deptVO);
 	}
-	
+
 	@Test
 //	@Ignore
 	public void test_004() throws SQLException {
@@ -50,7 +54,7 @@ public class Test_DeptDAO {
 		DeptVO DeptVO = deptDao.getDeptById(20);
 		System.out.println(" >>> " + DeptVO);
 	}
-	
+
 	@Test
 //	@Ignore
 	public void test_005() throws SQLException {
