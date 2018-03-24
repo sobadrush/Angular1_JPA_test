@@ -27,3 +27,11 @@ http://www.cnblogs.com/mingziday/p/4753680.html
 
 【Jpa CascadeType 详解】
 http://westerly-lzh.github.io/cn/2014/12/JPA-CascadeType-Explaining/
+
+
+【Jpa 單元測試 junit test中解决 could not initialize proxy - no Session 】
+https://blog.csdn.net/fo11ower/article/details/61240596
+
+
+
+

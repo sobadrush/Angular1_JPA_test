@@ -1,16 +1,16 @@
 package com.ctbc.model.vo;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 @Entity(name = "DeptVO")
 //@Table(name = "z40180_deptTB")// for ITOA
@@ -30,10 +30,13 @@ public class DeptVO implements Serializable {
 	@Column(name = "loc", nullable = false)
 	private String deptLoc;
 
+	@OneToMany(targetEntity = EmpVO.class, fetch = FetchType.LAZY, mappedBy = "deptVOGG")
+	private Set<EmpVO> emps;
+
 	public DeptVO() {
 		super();
 	}
-	
+
 	public DeptVO(Integer deptNo, String deptName, String deptLoc) {
 		super();
 		this.deptNo = deptNo;
@@ -71,10 +74,28 @@ public class DeptVO implements Serializable {
 		this.deptLoc = deptLoc;
 	}
 
+	
+	public Set<EmpVO> getEmps() {
+		return emps;
+	}
+
+	public void setEmps(Set<EmpVO> emps) {
+		this.emps = emps;
+	}
+
+	/**
+	 * 用 ReflectionToStringBuilder 的話，print時會"用到"另一方，造成每次都EAGER查詢
+	 */
+//	@Override
+//	public String toString() {
+//		boolean outputTransients = false;
+//		boolean outputStatics = false;
+//		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE, outputTransients, outputStatics);
+//	}
+	
 	@Override
 	public String toString() {
-		boolean outputTransients = false;
-		boolean outputStatics = false;
-		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE, outputTransients, outputStatics);
+		return "DeptVO [deptNo=" + deptNo + ", deptName=" + deptName + ", deptLoc=" + deptLoc + "]";
 	}
+	
 }

@@ -13,9 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
 @Entity(name = "EmpVO")
 //@Table(name = "z40180_empTB") // For ITOA
 @Table(name = "emp_TB15")// For ITOA
@@ -37,7 +34,7 @@ public class EmpVO implements Serializable {
 	@Column(name = "hiredate", nullable = false)
 	private java.sql.Date empHiredate;
 
-	@ManyToOne(targetEntity = DeptVO.class, fetch = FetchType.LAZY)
+	@ManyToOne(targetEntity = DeptVO.class, fetch = FetchType.EAGER)
 	@JoinColumn(name = "deptno")
 	private DeptVO deptVOGG;
 
@@ -93,11 +90,19 @@ public class EmpVO implements Serializable {
 		this.deptVOGG = deptVOGG;
 	}
 
+	/**
+	 * 用 ReflectionToStringBuilder 的話，print時會"用到"另一方，造成每次都EAGER查詢
+	 */
+//	@Override
+//	public String toString() {
+//		boolean outputTransients = false;
+//		boolean outputStatics = false;
+//		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE, outputTransients, outputStatics);
+//	}
+
 	@Override
 	public String toString() {
-		boolean outputTransients = false;
-		boolean outputStatics = false;
-		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE, outputTransients, outputStatics);
+		return "EmpVO [empNo=" + empNo + ", empName=" + empName + ", empJob=" + empJob + ", empHiredate=" + empHiredate + "]";
 	}
-
+	
 }
