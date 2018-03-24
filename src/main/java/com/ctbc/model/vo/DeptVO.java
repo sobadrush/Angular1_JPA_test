@@ -3,6 +3,7 @@ package com.ctbc.model.vo;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,7 +31,7 @@ public class DeptVO implements Serializable {
 	@Column(name = "loc", nullable = false)
 	private String deptLoc;
 
-	@OneToMany(targetEntity = EmpVO.class, fetch = FetchType.LAZY, mappedBy = "deptVOGG")
+	@OneToMany(targetEntity = EmpVO.class, fetch = FetchType.LAZY, mappedBy = "deptVOGG", cascade = CascadeType.REMOVE)
 	private Set<EmpVO> emps;
 
 	public DeptVO() {
