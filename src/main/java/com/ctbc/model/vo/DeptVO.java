@@ -13,9 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity(name = "DeptVO")
 //@Table(name = "z40180_deptTB")// for ITOA
 @Table(name = "dept_TB15") // HOME
+//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id") // 在JSON中給一個屬性，KEY叫作 @id，當作識別碼，解決雙向關係時JSON死循環的問題
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "deptNo") // jackson 2.0+ 版本新注解，作用于类或属性上，被用来在序列化/反序列化时为该对象或字段添加一个对象识别码，通常是用来解决循环嵌套的问题
 public class DeptVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -31,8 +36,7 @@ public class DeptVO implements Serializable {
 	@Column(name = "loc", nullable = false)
 	private String deptLoc;
 
-	@OneToMany(targetEntity = EmpVO.class, fetch = FetchType.LAZY, mappedBy = "deptVOGG",
-			cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+	@OneToMany(targetEntity = EmpVO.class, fetch = FetchType.LAZY, mappedBy = "deptVOGG", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	private Set<EmpVO> emps;
 
 	public DeptVO() {

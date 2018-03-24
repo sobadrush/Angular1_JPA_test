@@ -14,9 +14,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity(name = "EmpVO")
 //@Table(name = "z40180_empTB") // For ITOA
 @Table(name = "emp_TB15")// For ITOA
+//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id") // 在JSON中給一個屬性，KEY叫作 @id，當作識別碼，解決雙向關係時JSON死循環的問題
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "empNo") // jackson 2.0+ 版本新注解，作用于类或属性上，被用来在序列化/反序列化时为该对象或字段添加一个对象识别码，通常是用来解决循环嵌套的问题
 public class EmpVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -32,6 +38,7 @@ public class EmpVO implements Serializable {
 	@Column(name = "job", nullable = false)
 	private String empJob;
 
+	@JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
 	@Column(name = "hiredate", nullable = false)
 	private java.sql.Date empHiredate;
 

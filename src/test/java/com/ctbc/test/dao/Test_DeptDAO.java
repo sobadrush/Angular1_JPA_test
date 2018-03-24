@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ctbc.model.dao.DeptDAO;
 import com.ctbc.model.vo.DeptVO;
 import com.ctbc.model.vo.EmpVO;
+import com.google.gson.Gson;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring-beans.xml" })
@@ -30,6 +31,9 @@ public class Test_DeptDAO {
 	@Autowired
 	private DeptDAO deptDao;
 
+	@Autowired
+	private Gson gson;
+	
 	@Test
 //	@Ignore
 	@Transactional(propagation = Propagation.SUPPORTS) //  (1) 支援現在的交易，如果沒有的話就以非交易的方式執行(延長session)
@@ -83,9 +87,15 @@ public class Test_DeptDAO {
 			// 查部門下的員工
 			Set<EmpVO> empSet = deptVO.getEmps();
 			for (EmpVO empVO : empSet) {
+				empVO.setDeptVOGG(null);// For Gson 問題：若兩物件彼此有交互參照，toJson()會失敗 // https://stackoverflow.com/questions/10209959/gson-tojson-throws-stackoverflowerror
 				System.out.println(" →→→ " + empVO);
+				empVO.getClass();
 			}
 		}
+		
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		System.out.println(">>>>>>>>>>>>>>>>>>>> dList >>>>>>>>>>>>>>>>>>>>>> \n" + this.gson.toJson(dList));
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 	}
 
 }
