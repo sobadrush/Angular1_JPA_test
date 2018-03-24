@@ -3,6 +3,7 @@ package com.ctbc.model.vo;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,14 +35,13 @@ public class EmpVO implements Serializable {
 	@Column(name = "hiredate", nullable = false)
 	private java.sql.Date empHiredate;
 
-	@ManyToOne(targetEntity = DeptVO.class, fetch = FetchType.EAGER)
+	@ManyToOne(targetEntity = DeptVO.class, fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
 	@JoinColumn(name = "deptno")
 	private DeptVO deptVOGG;
 
 	public EmpVO() {
 		super();
 	}
-
 
 	public EmpVO(String empName, String empJob, Date empHiredate, DeptVO deptVOGG) {
 		this.empName = empName;
@@ -104,5 +104,5 @@ public class EmpVO implements Serializable {
 	public String toString() {
 		return "EmpVO [empNo=" + empNo + ", empName=" + empName + ", empJob=" + empJob + ", empHiredate=" + empHiredate + "]";
 	}
-	
+
 }

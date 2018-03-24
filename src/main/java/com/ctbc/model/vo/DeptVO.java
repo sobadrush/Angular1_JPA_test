@@ -31,7 +31,8 @@ public class DeptVO implements Serializable {
 	@Column(name = "loc", nullable = false)
 	private String deptLoc;
 
-	@OneToMany(targetEntity = EmpVO.class, fetch = FetchType.LAZY, mappedBy = "deptVOGG", cascade = CascadeType.REMOVE)
+	@OneToMany(targetEntity = EmpVO.class, fetch = FetchType.LAZY, mappedBy = "deptVOGG",
+			cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	private Set<EmpVO> emps;
 
 	public DeptVO() {
@@ -75,7 +76,6 @@ public class DeptVO implements Serializable {
 		this.deptLoc = deptLoc;
 	}
 
-	
 	public Set<EmpVO> getEmps() {
 		return emps;
 	}
@@ -93,10 +93,10 @@ public class DeptVO implements Serializable {
 //		boolean outputStatics = false;
 //		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE, outputTransients, outputStatics);
 //	}
-	
+
 	@Override
 	public String toString() {
 		return "DeptVO [deptNo=" + deptNo + ", deptName=" + deptName + ", deptLoc=" + deptLoc + "]";
 	}
-	
+
 }
