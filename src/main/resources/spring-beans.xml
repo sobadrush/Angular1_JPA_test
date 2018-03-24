@@ -14,10 +14,10 @@
 	<!-- 这个配置一定要单独放一个spring文件，然后在applicationContext.xml(或者其他的主入口文件)里import进来，如果你混淆做，就会报错:
 		发现了以元素 'bean' 开头的无效内容。应以 '{"http://www.springframework.org/schema/beans:beans} -->
 	<!-- https://www.hellojava.com/article/162 -->
-	<import resource="classpath:spring-datasource.xml"/>
+	<import resource="classpath:/spring-datasource.xml"/>
 
-
-	<bean id="persistenceAnnotationBeanPostProcessor" class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+<!-- 想使用@PersistenceContext注解，就必须声明PersistenceAnnotationBeanPostProcessor的Bean( 似乎已經整合在 component-scan 標籤中, http://blog.51cto.com/mushiqianmeng/723880) -->
+<!-- <bean id="persistenceAnnotationBeanPostProcessor" class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/> -->
 	
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" scope="singleton">
 		<property name="dataSource" ref="ds"></property>
@@ -27,6 +27,9 @@
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" p:entityManagerFactory-ref="entityManagerFactory"/>
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
+	<context:annotation-config/>
 	<context:component-scan base-package="com.ctbc.model.dao"/>
 	
 </beans>
+
+

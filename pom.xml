@@ -40,7 +40,7 @@
 		    <scope>test</scope>
 		</dependency>
         
-        <!-- spring-context -->
+        <!-- SPRING-CONTEXT -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-context</artifactId>
@@ -54,41 +54,47 @@
 <!-- 		    <version>${spring-version}</version> -->
 <!-- 		</dependency> -->
         
+        <!-- SPRING-WEBMVC -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-webmvc</artifactId>
+		    <version>${spring-version}</version>
+		</dependency>
         
-        <!-- spring-orm -->
+        <!-- SPRING-ORM -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-orm</artifactId>
 		    <version>${spring-version}</version>
 		</dependency>
         
-        <!-- spring-jdbc -->
+        <!-- SPRING-JDBC -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-jdbc</artifactId>
 		    <version>${spring-version}</version>
 		</dependency>
         
-        <!-- hibernate-jpa-2.1-api -->
+        <!-- HIBERNATE-JPA-2.1-API -->
 		<dependency>
 		    <groupId>org.hibernate.javax.persistence</groupId>
 		    <artifactId>hibernate-jpa-2.1-api</artifactId>
 		    <version>1.0.0.Final</version>
 		</dependency>
         
-        <!-- hibernate-core -->
+        <!-- HIBERNATE-CORE -->
 		<dependency>
 		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-core</artifactId>
 		    <version>${hibrenate-version}</version>
 		</dependency>
 		
-        <!-- hibernate-c3p0 -->
-		<dependency>
-		    <groupId>org.hibernate</groupId>
-		    <artifactId>hibernate-c3p0</artifactId>
-		    <version>${hibrenate-version}</version>
-		</dependency>
+        <!-- HIBERNATE-C3P0 -->
+<!-- 		<dependency> -->
+<!-- 		    <groupId>org.hibernate</groupId> -->
+<!-- 		    <artifactId>hibernate-c3p0</artifactId> -->
+<!-- 		    <version>${hibrenate-version}</version> -->
+<!-- 		</dependency> -->
         
 		<!-- MSSQL-JDBC -->
 		<dependency>
