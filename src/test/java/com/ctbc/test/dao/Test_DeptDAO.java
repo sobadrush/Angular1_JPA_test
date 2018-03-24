@@ -1,11 +1,13 @@
 package com.ctbc.test.dao;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -33,26 +35,26 @@ public class Test_DeptDAO {
 
 	@Autowired
 	private Gson gson;
-	
+
 	@Test
-//	@Ignore
+	@Ignore
 	@Transactional(propagation = Propagation.SUPPORTS) //  (1) 支援現在的交易，如果沒有的話就以非交易的方式執行(延長session)
-									                    //  (2) 為了解決junit test中解决 could not initialize proxy - no Session
+														//  (2) 為了解決junit test中解决 could not initialize proxy - no Session
 	public void test_001() throws SQLException {
 		System.out.println("================== 【START test_001】查一筆 ====================");
 		DeptVO deptVO = deptDao.getDeptById(10);
 		System.out.println(" >>>>>>>>>>>>> " + deptVO);
-		
+
 		Set<EmpVO> empSet = deptVO.getEmps();
 		for (EmpVO empVO : empSet) {
 			System.out.println(" →→→ " + empVO);
 		}
-		
+
 		Assert.assertNotNull("查無DeptVO資料", deptVO);
 	}
 
 	@Test
-//	@Ignore
+	@Ignore
 	public void test_002() throws SQLException {
 		System.out.println("================== 【START test_002】新增一筆 ====================");
 		DeptVO deptVO = new DeptVO("@@個金部@@", "@@台北南港@@");
@@ -60,30 +62,30 @@ public class Test_DeptDAO {
 	}
 
 	@Test
-//	@Ignore
+	@Ignore
 	public void test_003() throws SQLException {
 		System.out.println("==================【START test_003】刪除一筆 ====================");
 		System.out.println(deptDao.deleteDeptById(40));
 	}
 
 	@Test
-//	@Ignore
+	@Ignore
 	public void test_004() throws SQLException {
 		System.out.println("================== 【START test_004】修改一筆 ====================");
 		DeptVO deptVO = new DeptVO(10, "@@@國防部@@@", "@@@中正區@@@");
 		System.out.println(deptDao.updateDept(deptVO));
 	}
-	
+
 	@Test
-//	@Ignore
+	@Ignore
 	@Transactional(propagation = Propagation.SUPPORTS) //  (1) 支援現在的交易，如果沒有的話就以非交易的方式執行(延長session)
-                                                         //  (2) 為了解決junit test中解决 could not initialize proxy - no Session
+														//  (2) 為了解決junit test中解决 could not initialize proxy - no Session
 	public void test_005() throws SQLException {
 		System.out.println("================== 【START test_005】查全部 ====================");
 		List<DeptVO> dList = deptDao.getAllDept();
 		for (DeptVO deptVO : dList) {
 			System.err.println(deptVO);
-			
+
 			// 查部門下的員工
 			Set<EmpVO> empSet = deptVO.getEmps();
 			for (EmpVO empVO : empSet) {
@@ -92,10 +94,20 @@ public class Test_DeptDAO {
 				empVO.getClass();
 			}
 		}
-		
+
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		System.out.println(">>>>>>>>>>>>>>>>>>>> dList >>>>>>>>>>>>>>>>>>>>>> \n" + this.gson.toJson(dList));
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 	}
 
+	@Test
+//	@Ignore
+	public void test_006() throws SQLException {
+		System.out.println("================== 【START test_006】查多筆 IN ( :idList ) ====================");
+		Integer[] idArray = new Integer[] { 10, 20, 30 };
+		List<Integer> idList = Arrays.asList(idArray);
+		List<DeptVO> deptList = deptDao.getDeptByIdList(idList);
+		System.out.println(deptList);
+		Assert.assertEquals("筆數不符!!!", 3, deptList.size());
+	}
 }

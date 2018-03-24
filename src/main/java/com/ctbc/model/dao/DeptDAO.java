@@ -41,6 +41,13 @@ public class DeptDAO {
 	 	return deptVO;
 	}
 	
+	public List<DeptVO> getDeptByIdList(List<Integer> idList){
+		TypedQuery<DeptVO> query = em.createQuery("SELECT dd FROM DeptVO as dd WHERE dd.deptNo IN ( :_idList ) ", DeptVO.class);
+		query.setParameter("_idList", idList);
+		List<DeptVO> dList = query.getResultList();
+		return dList;
+	}
+	
 	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, timeout = TransactionDefinition.TIMEOUT_DEFAULT, rollbackFor = Exception.class)
 	public int addDept(DeptVO deptVO) {
 		em.persist(deptVO);

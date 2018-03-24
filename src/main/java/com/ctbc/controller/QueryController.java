@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ctbc.model.dao.DeptDAO;
@@ -53,7 +54,7 @@ public class QueryController {
 		}
 		return dList;
 	}
-	
+
 	/**
 	 * URL : http://localhost:8080/Angular1_JPA_test/spring/QueryController/query/getAllDeptsByGson
 	 */
@@ -61,7 +62,7 @@ public class QueryController {
 	@ResponseBody
 	public String getAllDeptsByGson() {
 		System.out.println(" >>>>>>>>>>> getAllDeptsByGson() <<<<<<<<<<< ");
-		
+
 		List<DeptVO> dList = this.deptDAO.getAllDept();
 		for (DeptVO deptVO : dList) {
 			System.err.println(deptVO);
@@ -73,10 +74,27 @@ public class QueryController {
 				System.out.println(" →→→ " + empVO);
 			}
 		}
-		
+
 		String jsonString = this.gson.toJson(dList);
 		System.out.println("Gson to Json >>> " + jsonString);
 		return jsonString;
+	}
+
+	/**
+	 * URL : http://localhost:8080/Angular1_JPA_test/spring/QueryController/query/getDeptsById_Gson
+	 */
+	@RequestMapping(value = "/query/getDeptsById_Gson", method = RequestMethod.GET, produces = JSON_FORMAT)
+	@ResponseBody
+	public DeptVO getDeptById(@RequestParam("_isEager") Boolean isEager, @RequestParam("_deptId") Integer deptNo) {
+		System.out.println(" >>>>>>>>>>> getDeptsById_Gson() <<<<<<<<<<< ");
+		System.out.println("_deptId >>> " + deptNo);
+		DeptVO deptVO = this.deptDAO.getDeptById(deptNo);
+
+		if (isEager == false) {
+			deptVO.setEmps(null);
+		}
+
+		return deptVO;
 	}
 
 	/**
@@ -93,7 +111,7 @@ public class QueryController {
 		}
 		return eList;
 	}
-	
+
 	/**
 	 * URL : http://localhost:8080/Angular1_JPA_test/spring/QueryController/query/getAllempsByGson
 	 */
@@ -107,7 +125,7 @@ public class QueryController {
 			deptVO.setEmps(null);// ※※※※※ For Gson 問題：若兩物件彼此有交互參照，toJson()會失敗
 			System.out.println(empVO + " >>>> 所屬部門 >>>> " + deptVO);
 		}
-		
+
 		String jsonString = this.gson.toJson(eList);
 		System.out.println("Gson to Json >>> " + jsonString);
 		return jsonString;
