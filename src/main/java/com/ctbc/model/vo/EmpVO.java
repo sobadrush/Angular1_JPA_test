@@ -5,9 +5,12 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
@@ -34,18 +37,20 @@ public class EmpVO implements Serializable {
 	@Column(name = "hiredate", nullable = false)
 	private java.sql.Date empHiredate;
 
-	@Column(name = "deptno", nullable = false)
-	private Integer deptno;
+	@ManyToOne(targetEntity = DeptVO.class, fetch = FetchType.LAZY)
+	@JoinColumn(name = "deptno")
+	private DeptVO deptVOGG;
 
 	public EmpVO() {
 		super();
 	}
 
-	public EmpVO(String empName, String empJob, Date empHiredate, int deptno) {
+
+	public EmpVO(String empName, String empJob, Date empHiredate, DeptVO deptVOGG) {
 		this.empName = empName;
 		this.empJob = empJob;
 		this.empHiredate = empHiredate;
-		this.deptno = deptno;
+		this.deptVOGG = deptVOGG;
 	}
 
 	public Integer getEmpNo() {
@@ -80,12 +85,12 @@ public class EmpVO implements Serializable {
 		this.empHiredate = empHiredate;
 	}
 
-	public Integer getDeptno() {
-		return deptno;
+	public DeptVO getDeptVOGG() {
+		return deptVOGG;
 	}
 
-	public void setDeptno(Integer deptno) {
-		this.deptno = deptno;
+	public void setDeptVOGG(DeptVO deptVOGG) {
+		this.deptVOGG = deptVOGG;
 	}
 
 	@Override
