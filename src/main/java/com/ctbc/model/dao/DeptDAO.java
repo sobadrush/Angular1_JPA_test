@@ -3,6 +3,7 @@ package com.ctbc.model.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -26,11 +27,18 @@ public class DeptDAO {
 		return nativeQuery.getResultList();
 	}
 	
-	@Transactional
 	public DeptVO getDeptById(int deptId){
 	 	TypedQuery<DeptVO> query = em.createQuery("SELECT dd FROM DeptVO as dd WHERE dd.deptNo = :_deptNo ", DeptVO.class);
 	 	query.setParameter("_deptNo", deptId);
-	 	return query.getSingleResult();
+	 	
+	 	DeptVO deptVO = null;
+	 	try {
+	 		deptVO = query.getSingleResult(); // 查不到會thorw exception , find( ) 查不到會直接回null
+		} catch (NoResultException e) {
+			// e.printStackTrace();
+			return null;
+		}
+	 	return deptVO;
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, timeout = TransactionDefinition.TIMEOUT_DEFAULT, rollbackFor = Exception.class)
@@ -47,4 +55,11 @@ public class DeptDAO {
 		return 1;
 	}
 	
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, timeout = TransactionDefinition.TIMEOUT_DEFAULT, rollbackFor = Exception.class)
+	public int deleteDeptById(int deptId) {
+		DeptVO deptVO = em.find(DeptVO.class, deptId);
+		System.out.println("@@@ >>> " + deptVO);
+		em.remove(deptVO);
+		return 1;
+	}
 }

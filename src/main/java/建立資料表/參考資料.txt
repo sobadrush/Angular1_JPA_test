@@ -20,3 +20,7 @@ http://arganzheng.life/spring-transaction.html
 
 【How to display hibernate sql parameter values – Log4j】
 https://www.mkyong.com/hibernate/how-to-display-hibernate-sql-parameter-values-log4j/
+
+【Generate Jpa @Entity】
+https://docs.oracle.com/cd/E14545_01/help/oracle.eclipse.tools.orm.doc/html/files/genJPAEntities.html
+http://www.cnblogs.com/mingziday/p/4753680.html

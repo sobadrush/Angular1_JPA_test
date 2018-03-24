@@ -3,6 +3,7 @@ package com.ctbc.test.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,37 +29,39 @@ public class Test_DeptDAO {
 	@Test
 //	@Ignore
 	public void test_001() throws SQLException {
-		System.out.println("================== 【START test_001】 ====================");
+		System.out.println("================== 【START test_001】查一筆 ====================");
+		DeptVO deptVO = deptDao.getDeptById(210);
+		System.out.println(" >>> " + deptVO);
+		Assert.assertNotNull("查無DeptVO資料", deptVO);
 	}
 
 	@Test
 //	@Ignore
 	public void test_002() throws SQLException {
-		System.out.println("================== 【START test_002】 ====================");
-		DeptVO deptVO = new DeptVO(10, "國防部", "中正區");
-		deptDao.updateDept(deptVO);
+		System.out.println("================== 【START test_002】新增一筆 ====================");
+		DeptVO deptVO = new DeptVO("個金部", "台北南港");
+		System.out.println(deptDao.addDept(deptVO));
 	}
 
 	@Test
 //	@Ignore
 	public void test_003() throws SQLException {
-		System.out.println("================== 【START test_003】 ====================");
-		DeptVO deptVO = new DeptVO("個金部", "台北南港");
-		deptDao.addDept(deptVO);
+		System.out.println("==================【START test_003】刪除一筆 ====================");
+		System.out.println(deptDao.deleteDeptById(40));
 	}
 
 	@Test
 //	@Ignore
 	public void test_004() throws SQLException {
-		System.out.println("================== 【START test_004】 ====================");
-		DeptVO DeptVO = deptDao.getDeptById(20);
-		System.out.println(" >>> " + DeptVO);
+		System.out.println("================== 【START test_004】修改一筆 ====================");
+		DeptVO deptVO = new DeptVO(10, "@@@國防部@@@", "@@@中正區@@@");
+		System.out.println(deptDao.updateDept(deptVO));
 	}
-
+	
 	@Test
 //	@Ignore
 	public void test_005() throws SQLException {
-		System.out.println("================== 【START test_005】 ====================");
+		System.out.println("================== 【START test_005】查全部 ====================");
 		List<DeptVO> dList = deptDao.getAllDept();
 		for (DeptVO deptVO : dList) {
 			System.out.println(deptVO);
