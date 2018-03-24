@@ -38,7 +38,7 @@ public class QueryController {
 	@RequestMapping(value = "/query/getAllDepts", method = RequestMethod.GET, produces = JSON_FORMAT)
 	@ResponseBody
 	public List<DeptVO> getAllDepts() {
-		System.out.println(" >>>>>>>> getAllDepts() <<<<<<<<<<< ");
+		System.out.println(" >>>>>>>>>>> getAllDepts() <<<<<<<<<<< ");
 
 		List<DeptVO> dList = this.deptDAO.getAllDept();
 		for (DeptVO deptVO : dList) {
@@ -48,14 +48,35 @@ public class QueryController {
 			// 查部門下的員工
 			Set<EmpVO> empSet = deptVO.getEmps();
 			for (EmpVO empVO : empSet) {
-				// empVO.setDeptVOGG(null);//For Gson 問題：若兩物件彼此有交互參照，toJson()會失敗
 				System.out.println(" →→→ " + empVO);
-//				empVO.getClass();// 手動Eager
 			}
 		}
-
-//		System.out.println("Gson to Json >>> " + this.gson.toJson(dList));
 		return dList;
+	}
+	
+	/**
+	 * URL : http://localhost:8080/Angular1_JPA_test/spring/QueryController/query/getAllDeptsByGson
+	 */
+	@RequestMapping(value = "/query/getAllDeptsByGson", method = RequestMethod.GET, produces = JSON_FORMAT)
+	@ResponseBody
+	public String getAllDeptsByGson() {
+		System.out.println(" >>>>>>>>>>> getAllDeptsByGson() <<<<<<<<<<< ");
+		
+		List<DeptVO> dList = this.deptDAO.getAllDept();
+		for (DeptVO deptVO : dList) {
+			System.err.println(deptVO);
+			// 查部門下的員工
+			Set<EmpVO> empSet = deptVO.getEmps();
+			for (EmpVO empVO : empSet) {
+				empVO.setDeptVOGG(null);// ※※※※※ For Gson 問題：若兩物件彼此有交互參照，toJson()會失敗
+//				empVO.getClass();// 手動Eager(因為前一行有"動過"empVO了，故已經達到手動Eager的效果了)
+				System.out.println(" →→→ " + empVO);
+			}
+		}
+		
+		String jsonString = this.gson.toJson(dList);
+		System.out.println("Gson to Json >>> " + jsonString);
+		return jsonString;
 	}
 
 	/**
@@ -64,15 +85,32 @@ public class QueryController {
 	@RequestMapping(value = "/query/getAllemps", method = RequestMethod.GET, produces = JSON_FORMAT)
 	@ResponseBody
 	public List<EmpVO> getAllemps() {
-		System.out.println(" >>>>>>>> getAllemps() <<<<<<<<<<< ");
-
+		System.out.println(" >>>>>>>>>>> getAllemps() <<<<<<<<<<< ");
 		List<EmpVO> eList = this.empDAO.getAllEmp();
 		for (EmpVO empVO : eList) {
 			DeptVO deptVO = empVO.getDeptVOGG();
 			System.out.println(empVO + " >>>> 所屬部門 >>>> " + deptVO);
 		}
-
 		return eList;
+	}
+	
+	/**
+	 * URL : http://localhost:8080/Angular1_JPA_test/spring/QueryController/query/getAllempsByGson
+	 */
+	@RequestMapping(value = "/query/getAllempsByGson", method = RequestMethod.GET, produces = JSON_FORMAT)
+	@ResponseBody
+	public String getAllempsByGson() {
+		System.out.println(" >>>>>>>>>>> getAllemps() <<<<<<<<<<< ");
+		List<EmpVO> eList = this.empDAO.getAllEmp();
+		for (EmpVO empVO : eList) {
+			DeptVO deptVO = empVO.getDeptVOGG();
+			deptVO.setEmps(null);// ※※※※※ For Gson 問題：若兩物件彼此有交互參照，toJson()會失敗
+			System.out.println(empVO + " >>>> 所屬部門 >>>> " + deptVO);
+		}
+		
+		String jsonString = this.gson.toJson(eList);
+		System.out.println("Gson to Json >>> " + jsonString);
+		return jsonString;
 	}
 
 }
