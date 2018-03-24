@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.ctbc.model.dao.EmpDAO;
 import com.ctbc.model.vo.DeptVO;
@@ -31,8 +29,6 @@ public class Test_EmpDAO {
 
 	@Test
 //	@Ignore
-	@Transactional(propagation = Propagation.SUPPORTS)//  (1) 支援現在的交易，如果沒有的話就以非交易的方式執行
-														//  (2) 為了解決junit test中解决 could not initialize proxy - no Session
 	public void test_001() throws SQLException {
 		System.out.println("================== 【START test_001】查一筆 ====================");
 		EmpVO empVO = empDao.getEmpById(7001);
