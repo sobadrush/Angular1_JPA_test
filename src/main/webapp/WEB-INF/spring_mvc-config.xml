@@ -14,6 +14,11 @@
 		p:suffix=".html" 
 		p:contentType="text/html; charset=UTF-8"/>
 		
+	<!-- Spring MVC CORS 跨域呼叫 ( 名词解释：跨域资源共享（Cross-Origin Resource Sharing） ) -->	
+<!-- 	<mvc:cors> -->
+<!-- 		<mvc:mapping path="/**"/> -->
+<!-- 	</mvc:cors>	 -->
+		
 	<!-- Scan Controller Bean -->
 	<context:component-scan base-package="com.ctbc.controller"/>
 	<mvc:annotation-driven/>

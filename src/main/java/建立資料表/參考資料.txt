@@ -30,9 +30,6 @@ http://westerly-lzh.github.io/cn/2014/12/JPA-CascadeType-Explaining/
 
 
 
-
-
-
 【Jpa 單元測試 junit test中解决 could not initialize proxy - no Session 】
 https://blog.csdn.net/fo11ower/article/details/61240596
 https://www.jianshu.com/p/e8caafce5445
@@ -43,4 +40,12 @@ https://stackoverflow.com/questions/10209959/gson-tojson-throws-stackoverflowerr
 【解决json序列化有多对一和多对多关系的对象时造成死循环的问题 @JsonIdentityInfo 類別級註解 】  bi-directional relationship 雙向關係
 https://blog.csdn.net/sdyy321/article/details/40298081
 http://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
+
+
+【SpringMVC CROS 跨域資源共享】
+【SSpring MVC 從4.2版本開始增加了對CORS的支持】
+https://www.jianshu.com/p/d05303d34222
+https://blog.csdn.net/isea533/article/details/50449907
+
+
 
