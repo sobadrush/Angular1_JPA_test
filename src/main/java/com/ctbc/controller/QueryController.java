@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -102,15 +103,15 @@ public class QueryController {
 	}
 
 	/**
-	 * URL : http://localhost:8080/Angular1_JPA_test/spring/QueryController/query/getDeptByIdList
+	 * URL : http://localhost:8080/Angular1_JPA_test/spring/QueryController/query/getDeptByIdList/isEager={_isEager}
 	 */
 	@CrossOrigin // Spring MVC 從4.2版本開始增加了對CORS的支持
-	@RequestMapping(value = "/query/getDeptByIdList", method = { RequestMethod.GET, RequestMethod.POST }, produces = JSON_FORMAT, consumes = { JSON_FORMAT })
+	@RequestMapping(value = "/query/getDeptByIdList/isEager={_isEager}/", method = { RequestMethod.GET, RequestMethod.POST }, produces = JSON_FORMAT, consumes = { JSON_FORMAT })
 	@ResponseBody
-	public List<DeptVO> getDeptByIdList(@RequestBody Map<String, Object> jsonParam) {
+	public List<DeptVO> getDeptByIdList(@PathVariable("_isEager") boolean isEager ,@RequestBody Map<String, Object> jsonParam) {
 		System.out.println(" >>>>>>>>>>> getDeptByIdList() <<<<<<<<<<< ");
 		System.out.println("jsonParam >> " + jsonParam);
-		boolean isEager = (boolean) jsonParam.get("_isEager");
+//		boolean isEager = (boolean) jsonParam.get("_isEager");
 		List<Integer> deptNoList = (ArrayList<Integer>) jsonParam.get("deptNoArray");
 
 		System.out.println("isEager : " + isEager);
