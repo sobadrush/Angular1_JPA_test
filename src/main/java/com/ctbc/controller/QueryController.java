@@ -1,11 +1,14 @@
 package com.ctbc.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -81,12 +84,12 @@ public class QueryController {
 	}
 
 	/**
-	 * URL : http://localhost:8080/Angular1_JPA_test/spring/QueryController/query/getDeptsById_Gson
+	 * URL : http://localhost:8080/Angular1_JPA_test/spring/QueryController/query/getDeptsById
 	 */
-	@RequestMapping(value = "/query/getDeptsById_Gson", method = RequestMethod.GET, produces = JSON_FORMAT)
+	@RequestMapping(value = "/query/getDeptsById", method = RequestMethod.GET, produces = JSON_FORMAT)
 	@ResponseBody
 	public DeptVO getDeptById(@RequestParam("_isEager") Boolean isEager, @RequestParam("_deptId") Integer deptNo) {
-		System.out.println(" >>>>>>>>>>> getDeptsById_Gson() <<<<<<<<<<< ");
+		System.out.println(" >>>>>>>>>>> getDeptById() <<<<<<<<<<< ");
 		System.out.println("_deptId >>> " + deptNo);
 		DeptVO deptVO = this.deptDAO.getDeptById(deptNo);
 
@@ -95,6 +98,32 @@ public class QueryController {
 		}
 
 		return deptVO;
+	}
+
+	/**
+	 * URL : http://localhost:8080/Angular1_JPA_test/spring/QueryController/query/getDeptByIdList
+	 */
+	@RequestMapping(value = "/query/getDeptByIdList", method = RequestMethod.POST, produces = JSON_FORMAT, consumes = { JSON_FORMAT })
+	@ResponseBody
+	public List<DeptVO> getDeptByIdList(@RequestBody Map<String, Object> jsonParam) {
+		System.out.println(" >>>>>>>>>>> getDeptByIdList() <<<<<<<<<<< ");
+		System.out.println("jsonParam >> "  +  jsonParam);
+		boolean isEager = (boolean) jsonParam.get("_isEager");
+		List<Integer> deptNoList = (ArrayList<Integer>) jsonParam.get("deptNoArray");
+		
+		System.out.println("isEager : " + isEager);
+		System.out.println("deptNoArray : " + deptNoList);
+		
+		List<DeptVO> deptList = this.deptDAO.getDeptByIdList(deptNoList);
+
+		if (isEager == false) {
+			for (DeptVO deptVO : deptList) {
+				deptVO.setEmps(null);
+				System.out.println("~~ " + deptVO);
+			}
+		}
+
+		return deptList;
 	}
 
 	/**
@@ -132,3 +161,5 @@ public class QueryController {
 	}
 
 }
+
+
