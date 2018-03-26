@@ -48,4 +48,10 @@ https://www.jianshu.com/p/d05303d34222
 https://blog.csdn.net/isea533/article/details/50449907
 
 
+【Tomcat CorsFilter跨域访问支持】 -------- 在server資料夾的web.xml中，加入CorsFilter
+http://lolikitty.pixnet.net/blog/post/203670946-tomcat-%E8%B7%A8%E5%9F%9F%E8%AB%8B%E6%B1%82-%28cors%29
+https://blog.csdn.net/bedisdover/article/details/57174785
+https://wuwenze.com/notes/tomcat-cors.html
+
+
 
